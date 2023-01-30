@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+// Cambios Gustavo Alania
+
 public class ProveedorDao {
     Connection con;
     Conexion cn = new Conexion();
