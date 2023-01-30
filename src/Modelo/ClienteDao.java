@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author USUARIO
+ * @author Cristhel
  */
 public class ClienteDao {
     
