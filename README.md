@@ -7,9 +7,8 @@
 
 | Apellidos | Nombres |
 | ------ | ------ |
-| Fernandez Caillahua | Felix Alfonso |
-| Torres Talaverano | Luz Elena |
-| Huarhuachi Ortega | Andrea Mariana |
-| Rojas Villanueva | Paula Elianne |
-| Quito Cucho | Giajahira Cristhel |
-| Alania Inga | Gustavo Adolfo |
+| Suel Arroyo | Walter |
+| Tumi Mamani | Nicole Gabriela |
+| Ramirez Gomero | Bryan Anthony |
+| Carhuamaca Puente | Albert Antonio |
+| Sierra Godoy | Paul Brayan |

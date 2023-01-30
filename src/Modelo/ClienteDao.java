@@ -24,26 +24,37 @@ public class ClienteDao {
     PreparedStatement ps;
     ResultSet rs;
     
+    //Cambios para mejorar la interfaz cliente
+    
     public boolean RegistrarCliente(Cliente cl){
         String sql = "INSERT INTO clientes (dni, nombre, telefono, direccion) VALUES (?,?,?,?)";
-        try {
-            con = cn.getConnection();
-            ps = con.prepareStatement(sql);
-            ps.setString(1, cl.getDni());
-            ps.setString(2, cl.getNombre());
-            ps.setString(3, cl.getTelefono());
-            ps.setString(4, cl.getDireccion());
-            ps.execute();
-            return true;
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.toString());
-            return false;
-        }finally{
-            try {
-                con.close();
-            } catch (SQLException e) {
-                System.out.println(e.toString());
+        //Restricciones
+        if(cl.getDni().length()>0 && cl.getDni().length()==8){
+            if(cl.getTelefono().length()>0 && cl.getTelefono().length()==9){
+                try {
+                con = cn.getConnection();
+                ps = con.prepareStatement(sql);
+                ps.setString(1, cl.getDni());
+                ps.setString(2, cl.getNombre());
+                ps.setString(3, cl.getTelefono());
+                ps.setString(4, cl.getDireccion());
+                ps.execute();
+                return true;
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, e.toString());
+                    return false;
+                }finally{
+                    try {
+                        con.close();
+                    } catch (SQLException e) {
+                        System.out.println(e.toString());
+                    }
+                }
+            } else {
+                return false;
             }
+        } else {
+           return false;
         }
     }
     
@@ -90,24 +101,32 @@ public class ClienteDao {
    
    public boolean ModificarCliente(Cliente cl){
        String sql = "UPDATE clientes SET dni=?, nombre=?, telefono=?, direccion=? WHERE id=?";
-       try {
-           ps = con.prepareStatement(sql);   
-           ps.setString(1, cl.getDni());
-           ps.setString(2, cl.getNombre());
-           ps.setString(3, cl.getTelefono());
-           ps.setString(4, cl.getDireccion());
-           ps.setInt(5, cl.getId());
-           ps.execute();
-           return true;
-       } catch (SQLException e) {
-           System.out.println(e.toString());
-           return false;
-       }finally{
-           try {
-               con.close();
-           } catch (SQLException e) {
-               System.out.println(e.toString());
-           }
+       if(cl.getDni().length()>0 && cl.getDni().length()==8){
+            if(cl.getTelefono().length()>0 && cl.getTelefono().length()==9){ 
+            try {
+                ps = con.prepareStatement(sql);   
+                ps.setString(1, cl.getDni());
+                ps.setString(2, cl.getNombre());
+                ps.setString(3, cl.getTelefono());
+                ps.setString(4, cl.getDireccion());
+                ps.setInt(5, cl.getId());
+                ps.execute();
+                return true;
+            } catch (SQLException e) {
+                System.out.println(e.toString());
+                return false;
+            }finally{
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    System.out.println(e.toString());
+                }
+            } 
+       } else {
+            return false;
+       }
+       } else {
+            return false;
        }
    }
    
