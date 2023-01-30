@@ -123,6 +123,7 @@ public class VentaDao {
                vent.setNombre_cli(rs.getString("nombre"));
                vent.setVendedor(rs.getString("vendedor"));
                vent.setTotal(rs.getDouble("total"));
+               vent.setFecha(rs.getString("fecha"));
                ListaVenta.add(vent);
            }
        } catch (SQLException e) {

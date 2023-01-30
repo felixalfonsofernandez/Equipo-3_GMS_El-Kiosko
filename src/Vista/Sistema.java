@@ -179,12 +179,13 @@ public final class Sistema extends javax.swing.JFrame {
     public void ListarVentas() {
         List<Venta> ListarVenta = Vdao.Listarventas();
         modelo = (DefaultTableModel) TableVentas.getModel();
-        Object[] ob = new Object[4];
+        Object[] ob = new Object[5];
         for (int i = 0; i < ListarVenta.size(); i++) {
             ob[0] = ListarVenta.get(i).getId();
             ob[1] = ListarVenta.get(i).getNombre_cli();
             ob[2] = ListarVenta.get(i).getVendedor();
             ob[3] = ListarVenta.get(i).getTotal();
+            ob[4] = ListarVenta.get(i).getFecha();
             modelo.addRow(ob);
         }
         TableVentas.setModel(modelo);
