@@ -1,5 +1,5 @@
 # PROYECTO-KIOSKO
-- Curso: Gestión de proyectos
+- Curso: Mantenimiento de software
 - Docente: Wilder Alex Inga López
 - Grupo: 3
 
