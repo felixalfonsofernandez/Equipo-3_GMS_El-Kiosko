@@ -28,6 +28,8 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.filechooser.FileSystemView;
 
+// Cambios en el codigo Felix Fernandez
+
 public class VentaDao {
     Connection con;
     Conexion cn = new Conexion();
@@ -52,64 +54,78 @@ public class VentaDao {
     }
     
     public int RegistrarVenta(Venta v){
-        String sql = "INSERT INTO ventas (cliente, vendedor, total, fecha) VALUES (?,?,?,?)";
-        try {
-            con = cn.getConnection();
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, v.getCliente());
-            ps.setString(2, v.getVendedor());
-            ps.setDouble(3, v.getTotal());
-            ps.setString(4, v.getFecha());
-            ps.execute();
-        } catch (SQLException e) {
-            System.out.println(e.toString());
-        }finally{
+        // se registra la venta con un cliente y vendedor que si existan
+        if(v.getCliente()>0 && v.getVendedor().length()>0){
+            String sql = "INSERT INTO ventas (cliente, vendedor, total, fecha) VALUES (?,?,?,?)";
             try {
-                con.close();
+                con = cn.getConnection();
+                ps = con.prepareStatement(sql);
+                ps.setInt(1, v.getCliente());
+                ps.setString(2, v.getVendedor());
+                ps.setDouble(3, v.getTotal());
+                ps.setString(4, v.getFecha());
+                ps.execute();
             } catch (SQLException e) {
                 System.out.println(e.toString());
+            }finally{
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    System.out.println(e.toString());
+                }
             }
+            return r;
+        }else{
+             return r;   
         }
-        return r;
     }
     
     public int RegistrarDetalle(Detalle Dv){
-       String sql = "INSERT INTO detalle (id_pro, cantidad, precio, id_venta) VALUES (?,?,?,?)";
-        try {
-            con = cn.getConnection();
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, Dv.getId_pro());
-            ps.setInt(2, Dv.getCantidad());
-            ps.setDouble(3, Dv.getPrecio());
-            ps.setInt(4, Dv.getId());
-            ps.execute();
-        } catch (SQLException e) {
-            System.out.println(e.toString());
-        }finally{
-            try {
-                con.close();
-            } catch (SQLException e) {
-                System.out.println(e.toString());
-            }
+       if(Dv.getCantidad()>0 && Dv.getCantidad()>0){
+            String sql = "INSERT INTO detalle (id_pro, cantidad, precio, id_venta) VALUES (?,?,?,?)";
+             try {
+                 con = cn.getConnection();
+                 ps = con.prepareStatement(sql);
+                 ps.setInt(1, Dv.getId_pro());
+                 ps.setInt(2, Dv.getCantidad());
+                 ps.setDouble(3, Dv.getPrecio());
+                 ps.setInt(4, Dv.getId());
+                 ps.execute();
+             } catch (SQLException e) {
+                 System.out.println(e.toString());
+             }finally{
+                 try {
+                     con.close();
+                 } catch (SQLException e) {
+                     System.out.println(e.toString());
+                 }
+             }
+             return r;
+        }else{
+             return r;   
         }
-        return r;
     }
     
     public boolean ActualizarStock(int cant, int id){
-        String sql = "UPDATE productos SET stock = ? WHERE id = ?";
-        try {
-            con = cn.getConnection();
-            ps = con.prepareStatement(sql);
-            ps.setInt(1,cant);
-            ps.setInt(2, id);
-            ps.execute();
-            return true;
-        } catch (SQLException e) {
-            System.out.println(e.toString());
+        if (cant>0){
+            String sql = "UPDATE productos SET stock = ? WHERE id = ?";
+            try {
+                con = cn.getConnection();
+                ps = con.prepareStatement(sql);
+                ps.setInt(1,cant);
+                ps.setInt(2, id);
+                ps.execute();
+                return true;
+            } catch (SQLException e) {
+                System.out.println(e.toString());
+                return false;
+            }
+        } else {
             return false;
         }
     }
     
+    // Listar ventas de manera indexada
     public List Listarventas(){
        List<Venta> ListaVenta = new ArrayList();
        String sql = "SELECT c.id AS id_cli, c.nombre, v.* FROM clientes c INNER JOIN ventas v ON c.id = v.cliente";
