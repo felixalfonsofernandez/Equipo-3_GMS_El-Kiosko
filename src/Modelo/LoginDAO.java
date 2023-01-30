@@ -74,4 +74,48 @@ public class LoginDAO {
        }
        return Lista;
    }
+    
+    //UBICACIÓN DEL CÓDIGO PARA MEJORAR EL SISTEMA
+//METODO PARA ELIMINAR USUARIO (COMO MEJORA)
+//        public boolean EliminarUsuario(int id){
+//       String sql = "DELETE FROM nombre WHERE id = ?";
+//       try {
+//           ps = con.prepareStatement(sql);
+//           ps.setInt(1, id);
+//           ps.execute();
+//           return true;
+//       } catch (SQLException e) {
+//           System.out.println(e.toString());
+//           return false;
+//       }finally{
+//           try {
+//               con.close();
+//           } catch (SQLException ex) {
+//               System.out.println(ex.toString());
+//           }
+//       }
+//   }
+    
+    //METODO PARA MODIFICAR USUARIO (COMO MEJORA)
+//    public boolean ModificarUsuario(login reg){
+//       String sql = "UPDATE productos SET nombre=?, correo=?, rol=? WHERE id=?";
+//       try {
+//           ps = con.prepareStatement(sql);
+//           ps.setString(1, reg.getNombre());
+//           ps.setString(2, reg.getCorreo());
+//           ps.setString(3, reg.getRol());
+//           ps.setInt(4, reg.getId());
+//           ps.execute();
+//           return true;
+//       } catch (SQLException e) {
+//           System.out.println(e.toString());
+//           return false;
+//       }finally{
+//           try {
+//               con.close();
+//           } catch (SQLException e) {
+//               System.out.println(e.toString());
+//           }
+//       }
+//   }
 }
